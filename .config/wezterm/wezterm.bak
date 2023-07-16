@@ -1,0 +1,18 @@
+local wezterm = require 'wezterm';
+local act = wezterm.action
+local config = {}
+
+config.font = wezterm.font 'MesloLGS NF'
+
+config.ssh_domains = wezterm.default_ssh_domains()
+for _, dom in ipairs(config.ssh_domains) do
+    dom.assume_shell = 'Posix'
+    dom.remote_wezterm_path = "/home/ryunuri/AppImages/WezTerm-nightly-Ubuntu20.04.AppImage"
+end
+
+config.keys = {
+  { key = '{', mods = 'SHIFT|ALT', action = act.MoveTabRelative(-1) },
+  { key = '}', mods = 'SHIFT|ALT', action = act.MoveTabRelative(1) },
+}
+
+return config
